@@ -1,13 +1,13 @@
 var Trip= [
     {
-        rideId: "1",
+        rideId: "HNG131",
         driverName: "F. Andersson",
         numberOfAvailableSeats: "4",
         startLocation: "Norrköping",
         endLocation: "Stockholm"
     },
     {
-        rideId: "2",
+        rideId: "GAH124",
         driverName: "R. Tompsson",
         numberOfAvailableSeats: "2",
         startLocation: "Linköping",
