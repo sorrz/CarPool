@@ -1,0 +1,73 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display:flex;
+    justify-content: center;
+
+}
+
+.createTrip {
+    border: 1px solid black;
+    width: 400px;
+    max-width: 100%;
+}
+
+.header {
+    background: grey;
+}
+
+.header h2{
+    margin: 0;
+    padding: 20px;
+}
+
+.form{
+    width: 100%;
+}
+
+.form-control {
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+}
+
+.form-control label {
+    display: inline-block;
+}
+
+.form-control input {
+    display: block;
+}
+.form-control textarea{
+    display: block;
+    resize: none;
+}
+
+.form-control.success input {
+    
+    outline: green solid 2px;
+}
+
+.form-control.error input {
+    outline: red solid 2px;
+}
+
+.form-control small {
+    visibility: hidden;
+}
+
+.form-control.error small{
+    visibility: visible;
+    color: red;
+}
+#isAllergic{
+    outline: none;
+}
+#allergiesText {
+    visibility: hidden;
+}
+
+/* #noteToPassenger {
+    height: 50px;
+} */
