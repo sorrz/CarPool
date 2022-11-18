@@ -1,70 +1,68 @@
-:root {
-    --space-cadet: hsla(229, 19%, 22%, 1);
-    --silver: hsla(180, 1%, 75%, 1);
-    --white: hsla(0, 0%, 100%, 1);
-    --mandarin: hsla(18, 83%, 63%, 1);
-    --black-coral: hsla(218, 19%, 38%, 1);
-    
-    margin: 0;
-    padding: 0;
+:root{
+--baby-pink: #fcc9c6ff;
+--spanish-pink: #f7b7b6ff;
+--tuscany: #c4a39eff;
+--light-cyan: #c7e8e3ff;
+
 }
 
 body {
-    background-color: var(--space-cadet);
-    margin: 0;
-}
-.main-layout {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  
+  p {
+    font-size: 16px;}
+ 
+ 
+  .margin {margin-bottom: 45px;}
+
+
+  .bg-1 { 
+    background-image: url("/img/backgroundCar.png");
+    background-size: cover;
+    height:auto;
     width: 100%;
-    height: 1vh;
-    display: grid;
-    grid:
-    "header" auto
-    "main" 1fr
-    / 1fr;
-    gap: 8px;
-}
+    color: #ffffff;
+  }
 
-.header {
-    grid-area: header;
-    background-color: var(--mandarin);
-}
-.main {
-    grid-area: main;
-    background-color: var(--black-coral);
-}
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
 
-.menu-layout {
-    width: 100%;
-    display: flex;
-    gap: 16px;
-}
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+ 
+  }
 
-.grow1 {
-    flex-grow: 1;
-}
+  .bg-4 { 
+    background-color: #c7e8e3ff; /* Black Gray */
+    color: #fff;
+    height: 70px;
+  }
 
-.data{
-    border: none;
-    background-color: var(--black-coral);
-    border-spacing: 0;
-    padding: 0;
-}
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
 
-.feed-layout {
-    width: 100%;
-    display: grid;
-    grid-template-rows: repeat(auto-fill, 0.25fr);
-    grid-template-columns: 1fr;
-    gap: 5px 0px;
-    align-content: end;
-    align-items: center;
-}
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: black;
+    height: 150px;
 
-a {
-    text-decoration: none;
-    color: var(--silver);
-}
-a:hover {
-    text-decoration: none;
-    color: var(--mandarin)
-}
+  }
+
+  .navbar-nav  li a:hover {
+    color: #f7b7b6ff !important;
+  }
+
