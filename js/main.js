@@ -1,6 +1,14 @@
 // Holds all of the registered trips
-// Call addTrip(Trip) to add another Trip to this array
+// Call addTrip(Trip); to add another Trip to this array
+// or   addRandomTrips(5000);
 const trips = new Array();
+
+// Set to true if you want to log debug-related things to the console
+const debugMainJS = true;
+
+// ################
+// ## Trip Class ##
+// ################
 
 class Trip {
     constructor(driverName, numberOfAvailableSeats, dateTime, startLocation, endLocation, message, allergies, price) {
@@ -15,29 +23,59 @@ class Trip {
         this.price = price;
     }
 
+    bookSeat(passenger){
+        // Reservations for internal logic on a passenger list?
+
+        if (this.numberOfAvailableSeats > 0) {
+            this.numberOfAvailableSeats -= 1;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    getAllergies() {
+        // Separate all specified allergies into an array of allergies
+        return allergies.split(", ");
+    }
+
     getLocalDate() {
         // Converts and returns the UTC dateTime property to a Date with local values
         return new Date(this.dateTime.getTime() + this.dateTime.getTimezoneOffset() * 60000);
     }
 
+    getDateString() {
+        // Returns a string that represents the date (local)
+        // in the following format yyyy:mm:dd
+        return this.getLocalDate().toLocaleDateString();
+    }
+
+    getTimeString() {
+        // Returns a string that represents time (local)
+        // in the following format hh:mm
+        return this.getLocalDate().toLocaleTimeString().slice(0, 5);
+    }
+
     #getDateTimeString() {
         // Returns a string that represents the date and time (local)
-        // in the following format yyyy:mm:dd hh:mm:ss
-        return `${this.getLocalDate().toLocaleDateString()} ${this.getLocalDate().toLocaleTimeString()}`;
+        // in the following format yyyy:mm:dd hh:mm
+        return `${this.getDateString()} ${this.getTimeString()}`;
     }
 
     #getAllergiesString() {
         // For internal use
         // Returns "none" or the allergies
-        if (this.hasAllergies()) return this.allergies;
-        return "none";
+        if (!this.hasAllergies()) return "none";
+        else if (this.allergies.length < 16) return this.allergies;
+        return `\n${this.allergies}`;
     }
 
     #getMessageString() {
         // For internal use
         // Returns "none" or the message
         if (this.message === "") return "none";
-        if (this.message.length <= 8) return this.message;
+        if (this.message.length < 9) return this.message;
         return `\n${this.message}`;
     }
 
@@ -49,10 +87,14 @@ class Trip {
     toMessage() {
         // Creates a user readable message that can be used in an alert or other html element
         // The message includes all of the properties contained in this object
-        let separator = "------------------------------";
+        let separator = "---------------------------";
         return `From: ${this.startLocation}\nTo: ${this.endLocation}\n${separator}\nWhen: ${this.#getDateTimeString()}\nNumber of open spots: ${this.numberOfAvailableSeats}\n${separator}\nAllergies: ${this.#getAllergiesString()}\n${separator}\nPrice: ${this.price}\n${separator}\nAdditional notes: ${this.#getMessageString()}`;
     }
 };
+
+// ###############################
+// ## Object creation functions ##
+// ##################¤¤¤¤¤¤¤¤#####
 
 function addTrip(trip){
     trips.push(trip);
@@ -67,7 +109,7 @@ function createRandomTrip() {
     trip.endLocation = getRandomEnd(trip.startLocation);
     trip.allergies = getRandomAllergies();
     trip.message = "";
-    trip.price = 49;
+    trip.price = getRandomPrice(20);
     return trip;
 }
 
@@ -76,6 +118,10 @@ function addRandomTrips(numberOfTrips) {
         addTrip(createRandomTrip());  
     }
 }
+
+// ######################
+// ## Random functions ##
+// ######################
 
 function getRandomInt(maxValue) {
     return Math.floor(Math.random() * maxValue);
@@ -422,6 +468,203 @@ function getRandomAllergy(){
     }
 }
 
+function getRandomPrice(max = 10) {
+    // Returns a random value from 0 to max * 10 in ten step increments (minus 1)
+    // i.e. 0, 9, 19, 29, 39, 49 etc.
+    return Math.max(Number.parseInt(Math.random() * 11) * max - 1, 0);
+}
+
+function createTime(hour, minute, fromDate = null){
+    // This function creates a new date object that is set to
+    // todays date (or fromDate if specified), and the specified hour and minute
+    // Usage: When comparing dates and not want the time to affect it
+
+    let date = null;
+    if (fromDate === null){
+        date = new Date();
+    }
+    else{
+        date = new Date(fromDate);
+    }
+
+    date.setHours(hour);
+    date.setMinutes(minute);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+
+    return date;
+}
+
+// ##############¤¤#########
+// ## Filtering functions ##
+// ############¤¤###########
+
+function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = null, from = null, to = null, allergies = null, price = null, excludeFullyBooked = true){
+    let result = new Array();
+
+    // Go through each registered trip and perform a failing check
+    trips.forEach(trip => {
+        if (excludeFullyBooked && trip.numberOfAvailableSeats <= 0) return;
+        if (dateFrom !== null) {
+            // Exclude trips that is before this date
+            let tripDate = createTime(0, 0, trip.dateTime.toLocaleDateString());
+            let date = createTime(0, 0, dateFrom);
+            // if (debugMainJS) {
+            //     let string = tripDate.toLocaleString() + " < " + date.toLocaleString();
+            //     if (tripDate < date) string += ": FAIL";
+            //     console.log(string);
+            // }
+            if (tripDate < date) return;
+        }
+        if (dateTo !== null) {
+            // Exclude trips that is after this date
+            let tripDate = createTime(0, 0, trip.dateTime.toLocaleDateString());
+            let date = createTime(0, 0, dateTo);
+            // if (debugMainJS) {
+            //     let string = tripDate.toLocaleString() + " > " + date.toLocaleString();
+            //     if (tripDate > date) string += ": FAIL";
+            //     console.log(string);
+            // }
+            if (tripDate > date) return;
+        }
+        if (timeFrom !== null) {
+            // Exclude trips that starts before this time
+            // if (debugMainJS) {
+            //     let string = trip.dateTime.getHours() + " < " + timeFrom.getHours();
+            //     if (trip.dateTime.getHours() < timeFrom.getHours()) string += ": FAIL";
+            //     else if (trip.dateTime.getHours() === timeFrom.getHours()){
+            //         string = trip.dateTime.getHours() + " = " + timeFrom.getHours() + " | " + trip.dateTime.getMinutes() + " < " + timeFrom.getMinutes();
+            //         if (trip.dateTime.getMinutes() < timeFrom.getMinutes()) string += ": FAIL";
+            //     }
+            //     console.log(string);
+            // }
+            if (trip.dateTime.getHours() < timeFrom.getHours()) return;
+            else if (trip.dateTime.getHours() === timeFrom.getHours() && trip.dateTime.getMinutes() < timeFrom.getMinutes()) return;
+        }
+        if (timeTo !== null) {
+            // Exclude trips that starts after this time
+            // if (debugMainJS) {
+            //     let string = trip.dateTime.getHours() + " > " + timeTo.getHours();
+            //     if (trip.dateTime.getHours() > timeTo.getHours()) string += ": FAIL";
+            //     else if (trip.dateTime.getHours() === timeTo.getHours()){
+            //         string = trip.dateTime.getHours() + " = " + timeTo.getHours() + " | " + trip.dateTime.getMinutes() + " > " + timeTo.getMinutes();
+            //         if (trip.dateTime.getMinutes() > timeTo.getMinutes()) string += ": FAIL";
+            //     }
+            //     console.log(string);
+            // }
+            if (trip.dateTime.getHours() > timeTo.getHours()) return;
+            else if (trip.dateTime.getHours() === timeTo.getHours() && trip.dateTime.getMinutes() > timeTo.getMinutes()) return;
+        }
+        // Exclude trips that do not start from the specified location
+        if (from !== null && from.toLowerCase() !== trip.startLocation.toLowerCase()) return;
+        // Exclude trips that do not end in the specified location
+        if (to !== null && to.toLowerCase() !== trip.endLocation.toLowerCase()) return;
+        // Exclude trips that costs more than the specified price
+        if (price !== null && trip.price > price) return;
+        if (allergies !== null){
+            // Exclude trips that has any of the specified allergies listed
+
+            // Separate all specified allergies into an array of allergies
+            let allergyArray = allergies.split(", ");
+
+            // Loop through each of the allergies and see if they excists in the trip
+            let fail = false;
+            allergyArray.forEach(allergy => {
+                // Check if the current allergy is included in the trip's listed allergies
+                if (trip.allergies.toLowerCase().includes(allergy.toLowerCase())) { 
+                    fail = true;
+                    return; // No need to check further allergies
+                };
+            });
+
+            if (fail) return;
+        }
+
+        // If the excecution reaches here, add the trip to the result
+        result.push(trip);
+    });
+
+    return result;
+}
+
+// #########################
+// ## Cleansing functions ##
+// ######################¤¤#
+
+function cleanseTrips(removeFullyBooked = false) {
+    // This function scans all trips and removes the ones that are
+    // out of date (passed)
+
+    let now = new Date();
+    for (let i = 0; i < trips.length; i++) {
+        const trip = trips[i];
+        if (trip.dateTime <= now || (removeFullyBooked && trip.numberOfAvailableSeats <= 0)){
+            if (debugMainJS) console.log(`Removing ${i}: ${trip.driverName} (${trip.getDateString()} ${trip.getTimeString()})`);
+            trips.splice(i, 1);
+        }
+    }
+}
+
+// #######################
+// ## Sorting functions ##
+// #######################
+
+function sortTrips(tripArray, ascending, fieldA, fieldB = null, fieldC = null, fieldD = null, fieldE = null, fieldF = null) {
+    // Sort the passed in array of Trip objects in custom ordering
+    // Specify as many sub-ordering methods as needed (up to 5).
+    // example A: sortTrips(trips, true, comparePrice, compareStartingLocation)
+    // example B: sortTrips(trips, false, compareDriverName)
+
+    // Pass in any of the below compareXXX functions as parameter values of field A to F
+
+    tripArray.sort((a, b) => {
+        let compare;
+        compare = fieldA(a, b, ascending);
+        if (compare === 0 && fieldB !== null) compare = fieldB(a, b, ascending);
+        if (compare === 0 && fieldC !== null) compare = fieldC(a, b, ascending);
+        if (compare === 0 && fieldD !== null) compare = fieldD(a, b, ascending);
+        if (compare === 0 && fieldE !== null) compare = fieldE(a, b, ascending);
+        if (compare === 0 && fieldF !== null) compare = fieldF(a, b, ascending);
+        return compare;
+      });
+
+      return tripArray;
+}
+
+function compareStartingLocation(a, b, ascending = true) {
+    if (a.startLocation === b.startLocation) return 0;
+    return a.startLocation < b.startLocation ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+}
+
+function compareDestination(a, b, ascending = true) {
+    if (a.endLocation === b.endLocation) return 0;
+    return a.endLocation < b.endLocation ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+}
+
+function compareDateTime(a, b, ascending = true) {
+    if (a.dateTime === b.dateTime) return 0;
+    return a.dateTime < b.dateTime ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+}
+
+function compareDriverName(a, b, ascending = true) {
+    if (a.driverName === b.driverName) return 0;
+    return a.driverName < b.driverName ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+}
+
+function comparePrice(a, b, ascending = true) {
+    if (a.price === b.price) return 0;
+    return a.price < b.price ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+}
+
+function compareAvailableSeats(a, b, ascending = true) {
+    if (a.numberOfAvailableSeats === b.numberOfAvailableSeats) return 0;
+    return a.numberOfAvailableSeats < b.numberOfAvailableSeats ? (ascending ? 1 : -1) : (ascending ? -1 : 1);
+}
+
+// Try it out:
+// addRandomTrips(5000);
+// console.log(sortTrips(trips, true, comparePrice, compareDriverName));
+
 // Use this way:
 // A) let trip = new Trip("dennis", 3, "Norrköping", "Linköping", "allmän info", false, 200);
 // A) let driver = trip.driverName;
@@ -430,3 +673,6 @@ function getRandomAllergy(){
 
 // C) addRandomTrips(5);
 // C) console.log(trips);
+
+// D) console.log(filterTrips(null, null, null, null, null, null, "PerfUME, Cats", null));
+// E) console.log(filterTrips(null, null, createTime(15, 15), createTime(20, 45), null, null, null, null));
