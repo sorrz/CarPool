@@ -7,6 +7,7 @@ const numberOfAvailableSeats = document.getElementById('numberOfAvailableSeats')
 const isAllergic = document.getElementById('isAllergic');
 const allergiesText = document.getElementById('allergiesText');
 const noteToPassenger = document.getElementById('noteToPassenger');
+const price = document.getElementById('price');
 
 //Array with valid cities
 const validCities =["stockholm","göteborg", "malmö", "uppsala", "västerås", "örebro", "linköping", "helsingborg", "jönköping", "norrköping", "lund", "umeå", "gävle",
@@ -62,14 +63,14 @@ form.addEventListener('submit', (e) =>{
 function createTripObject(){
     //TODO: [ ] The login form is not integrated, so we do not have the name of the drive:
     //          A dummy name is used in its place.
-    //TODO: [ ] Price field is not integrated, so we do not have a price:
+    //TODO: [X] Price field is not integrated, so we do not have a price:
     //          A dummy price is used in its place.
 
     let driverName = "<Robot>"; // !!! To be replaced with the name from the logged in user
-    let price = 49; //             !!! To be replaced with the price that the user has set
+    //let price = 49; //             !!! To be replaced with the price that the user has set. REPLACED BY OSCAR 21/11
     
     // Creates and returns a new Trip object that is populated with the values of the form
-    return new Trip(driverName, numberOfAvailableSeats.value, dateTime.valueAsDate, startLocation.value, endLocation.value, noteToPassenger.value, allergiesText.value, price);
+    return new Trip(driverName, numberOfAvailableSeats.value, dateTime.valueAsDate, startLocation.value, endLocation.value, noteToPassenger.value, allergiesText.value, price.value);
 }
 
 function validate(){
@@ -77,6 +78,7 @@ function validate(){
     const endLocationValue = endLocation.value.toLowerCase().trim();
     const numberOfAvailableSeatsValue = numberOfAvailableSeats.value;
     const allergiesTextValue = allergiesText.value;
+    const priceValue = price.value;
 
     let error = false; // set this flag to true if any validation error occured
 
@@ -117,6 +119,15 @@ function validate(){
     }
     else {
         setToValid(numberOfAvailableSeats);
+    }
+
+    //Check price
+    if (priceValue < 1 || priceValue == ''){
+        setToInvalid(price, 'Enter a price');
+        error = true;
+    }
+    else {
+        setToValid(price);
     }
     
     //Check allergies
