@@ -1,7 +1,6 @@
 :root{
     --baby-pink: #fcc9c6ff;
     --spanish-pink: #f7b7b6ff;
-    --tuscany: #c4a39eff;
     --light-cyan: #c7e8e3ff;
     --white: #ffffff;
     --dark-blue: #474e5d;
@@ -63,7 +62,10 @@
         color: var(--white);
       }
 
-      .bg-6 { 
-
+   
+      .bg-4 { 
+        background-color: var(--light-cyan); 
         color: var(--white);
+        height: auto;
+        padding: 20px;
       }
