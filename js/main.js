@@ -653,6 +653,18 @@ function compareAvailableSeats(a, b, ascending = true) {
     return a.numberOfAvailableSeats < b.numberOfAvailableSeats ? (ascending ? 1 : -1) : (ascending ? -1 : 1);
 }
 
+
+//function generateInitialValues() {
+  //  addRandomTrips(10);
+    //console.log(trips);
+//}
+
+if (trips.length === 0) {
+    console.log("Generating trips");
+    addRandomTrips(10);
+    console.log(trips);
+}
+
 // Try it out:
 // addRandomTrips(5000);
 // console.log(sortTrips(trips, true, comparePrice, compareDriverName));
