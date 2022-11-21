@@ -1,57 +1,30 @@
-
-  :root{
-    --baby-pink: #fcc9c6ff;
-    --spanish-pink: #f7b7b6ff;
-    --light-cyan: #c7e8e3ff;
-    --white: #ffffff;
-    --dark-blue: #474e5d;
-    --dark-grey: #555555;
-    --black: #000000;
-    
-    } 
-
-    label{
-        color: var(--dark-grey);
-    }
-
-.navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
-    border-radius: 0;
-    margin-bottom: 0;
-    font-size: 12px;
-    letter-spacing: 5px;
-    color: var(--black);
-    height: 150px;
-
-  }
-
-  .navbar-nav  li a:hover {
-    color: var(--spanish-pink) !important;
-  }
-
-
-
-.createTrip {
-    border-radius: 8px;
-    background-color: var(--spanish-pink);
-    width: 400px;
-  
-    padding: 20px;
-    align-content: center;
+*{
+    box-sizing: border-box;
 }
 
+body{
+    display:flex;
+    justify-content: center;
 
-.bg-2 { 
-    background-color: var(--white);
-    color: var(--white);
-    padding: 50px;
-  }
+}
 
-/* .form{
+.createTrip {
+    border: 1px solid black;
+    width: 400px;
+    max-width: 100%;
+}
 
-    color: var(--dark-grey);
+.header {
+    background: grey;
+}
+
+.header h2{
+    margin: 0;
+    padding: 20px;
+}
+
+.form{
+    width: 100%;
 }
 
 .form-control {
@@ -66,7 +39,6 @@
 .form-control input {
     display: block;
 }
-
 .form-control textarea{
     display: block;
     resize: none;
@@ -91,38 +63,11 @@
 }
 #isAllergic{
     outline: none;
-
 }
 #allergiesText {
     visibility: hidden;
-} */
-
-.logoIndex {
-    position: relative;
-    text-align: center;
-    color: var(--white);
-  }
-
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-  }
-
-  .margin {
-    margin-bottom: 45px;
-    color: var(--dark-grey);
-
 }
 
-.bg-4 { 
-    background-color: var(--light-cyan); 
-    color: var(--white);
-    height: auto;
-    padding: 20px;
-  }
 /* #noteToPassenger {
     height: 50px;
 } */
