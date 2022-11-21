@@ -1,8 +1,8 @@
 // Holds all of the registered trips
 // Call addTrip(Trip); to add another Trip to this array
 // or   addRandomTrips(5000);
-const trips = new Array();
-
+var trips;
+if (trips === undefined) trips = new Array();
 // Set to true if you want to log debug-related things to the console
 const debugMainJS = true;
 
@@ -23,14 +23,13 @@ class Trip {
         this.price = price;
     }
 
-    bookSeat(passenger){
+    bookSeat(passenger) {
         // Reservations for internal logic on a passenger list?
 
         if (this.numberOfAvailableSeats > 0) {
             this.numberOfAvailableSeats -= 1;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -96,7 +95,7 @@ class Trip {
 // ## Object creation functions ##
 // ##################¤¤¤¤¤¤¤¤#####
 
-function addTrip(trip){
+function addTrip(trip) {
     trips.push(trip);
 }
 
@@ -115,7 +114,7 @@ function createRandomTrip() {
 
 function addRandomTrips(numberOfTrips) {
     for (let i = 0; i < numberOfTrips; i++) {
-        addTrip(createRandomTrip());  
+        addTrip(createRandomTrip());
     }
 }
 
@@ -132,7 +131,7 @@ function getRandomName() {
 }
 
 function getRandomFirstName() {
-    switch (getRandomInt(51)){
+    switch (getRandomInt(51)) {
         case 0:
             return "Adam";
         case 1:
@@ -239,7 +238,7 @@ function getRandomFirstName() {
 }
 
 function getRandomLastName() {
-    switch (getRandomInt(51)){
+    switch (getRandomInt(51)) {
         case 0:
             return "Adolfsson";
         case 1:
@@ -348,19 +347,16 @@ function getRandomLastName() {
 function getRandomSeats() {
     let r = Math.random();
 
-    if (r <= 0.5){
+    if (r <= 0.5) {
         // 50% chanse of 3 seats available
         return 3;
-    }
-    else if (r <= 0.8) {
+    } else if (r <= 0.8) {
         // 30% chanse of 2 seats available
         return 2;
-    }
-    else if (r <= 0.95){
+    } else if (r <= 0.95) {
         // 15% chanse of 1 seats available
         return 1;
-    }
-    else {
+    } else {
         // 5% chanse of 4-8 seats available
         return getRandomInt(5) + 4;
     }
@@ -394,7 +390,7 @@ function getRandomEnd(start) {
     let result = getRandomStart();
 
     // Make sure that the end location cannot be the same as the start location
-    while (result === start){
+    while (result === start) {
         result = getRandomStart();
     }
 
@@ -407,23 +403,19 @@ function getRandomAllergies() {
     let allergies = new Array();
 
     let factor = Math.random();
-    if (factor <= 0.60){
+    if (factor <= 0.60) {
         // 60% chanse of 0 allergies
         numberOfAllergies = 0;
-    }
-    else if (factor <= 0.75){
+    } else if (factor <= 0.75) {
         // 15% chanse of 1 allergy
         numberOfAllergies = 1;
-    }
-    else if (factor <= 0.87){
+    } else if (factor <= 0.87) {
         // 12% chanse of 2 allergies
         numberOfAllergies = 2;
-    }
-    else if (factor <= 0.95){
+    } else if (factor <= 0.95) {
         // 8% chanse of 3 allergies
         numberOfAllergies = 3;
-    }
-    else{
+    } else {
         // 5% chanse of 4 allergies
         numberOfAllergies = 4;
     }
@@ -433,7 +425,7 @@ function getRandomAllergies() {
         let allergy = getRandomAllergy();
 
         // Make sure that the allergy is not already specified
-        while (allergies.includes(allergy)){
+        while (allergies.includes(allergy)) {
             allergy = getRandomAllergy();
         }
 
@@ -451,7 +443,7 @@ function getRandomAllergies() {
     return result;
 }
 
-function getRandomAllergy(){
+function getRandomAllergy() {
     switch (getRandomInt(7)) {
         case 1:
             return "Cats";
@@ -474,16 +466,15 @@ function getRandomPrice(max = 10) {
     return Math.max(Number.parseInt(Math.random() * 11) * max - 1, 0);
 }
 
-function createTime(hour, minute, fromDate = null){
+function createTime(hour, minute, fromDate = null) {
     // This function creates a new date object that is set to
     // todays date (or fromDate if specified), and the specified hour and minute
     // Usage: When comparing dates and not want the time to affect it
 
     let date = null;
-    if (fromDate === null){
+    if (fromDate === null) {
         date = new Date();
-    }
-    else{
+    } else {
         date = new Date(fromDate);
     }
 
@@ -499,7 +490,7 @@ function createTime(hour, minute, fromDate = null){
 // ## Filtering functions ##
 // ############¤¤###########
 
-function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = null, from = null, to = null, allergies = null, price = null, excludeFullyBooked = true){
+function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = null, from = null, to = null, allergies = null, price = null, excludeFullyBooked = true) {
     let result = new Array();
 
     // Go through each registered trip and perform a failing check
@@ -561,7 +552,7 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
         if (to !== null && to.toLowerCase() !== trip.endLocation.toLowerCase()) return;
         // Exclude trips that costs more than the specified price
         if (price !== null && trip.price > price) return;
-        if (allergies !== null){
+        if (allergies !== null) {
             // Exclude trips that has any of the specified allergies listed
 
             // Separate all specified allergies into an array of allergies
@@ -571,10 +562,11 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
             let fail = false;
             allergyArray.forEach(allergy => {
                 // Check if the current allergy is included in the trip's listed allergies
-                if (trip.allergies.toLowerCase().includes(allergy.toLowerCase())) { 
+                if (trip.allergies.toLowerCase().includes(allergy.toLowerCase())) {
                     fail = true;
                     return; // No need to check further allergies
-                };
+                }
+                ;
             });
 
             if (fail) return;
@@ -598,7 +590,7 @@ function cleanseTrips(removeFullyBooked = false) {
     let now = new Date();
     for (let i = 0; i < trips.length; i++) {
         const trip = trips[i];
-        if (trip.dateTime <= now || (removeFullyBooked && trip.numberOfAvailableSeats <= 0)){
+        if (trip.dateTime <= now || (removeFullyBooked && trip.numberOfAvailableSeats <= 0)) {
             if (debugMainJS) console.log(`Removing ${i}: ${trip.driverName} (${trip.getDateString()} ${trip.getTimeString()})`);
             trips.splice(i, 1);
         }
@@ -626,9 +618,9 @@ function sortTrips(tripArray, ascending, fieldA, fieldB = null, fieldC = null, f
         if (compare === 0 && fieldE !== null) compare = fieldE(a, b, ascending);
         if (compare === 0 && fieldF !== null) compare = fieldF(a, b, ascending);
         return compare;
-      });
+    });
 
-      return tripArray;
+    return tripArray;
 }
 
 function compareStartingLocation(a, b, ascending = true) {
