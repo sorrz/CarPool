@@ -54,38 +54,42 @@ function createElement(tag, className, text, parent) {
     return element;
 }
 
+// FUNCTIONS BELOW ARE DEPRECATED AND ARE NOT USED! PLEASE DO NOT TOUCH!
+
+
+
 // function getArray () {
 //     // (A) GET FROM SESSION
 //     var first = localStorage.getItem("first"),
 //         second = JSON.parse(localStorage.getItem("second"));
+//O
+// //     // (B) IT WORKS!
+// //     // NOTE: LOCAL STORAGE IS PERSISTENT
+// //     // WILL NOT BE DELETED UNLESS USER CLEARS BROWSER DATA OR MANUALLY CLEARED
+// //     console.log(first);  // Foo Bar
+// //     console.log(second); // ["Hello", "World"]
+// //
+// //     // (EXTRA) CLEAR LOCAL STORAGE
+// //     // localStorage.removeItem("KEY");
+// //     // localStorage.clear();
+// // }
 //
-//     // (B) IT WORKS!
-//     // NOTE: LOCAL STORAGE IS PERSISTENT
-//     // WILL NOT BE DELETED UNLESS USER CLEARS BROWSER DATA OR MANUALLY CLEARED
-//     console.log(first);  // Foo Bar
-//     console.log(second); // ["Hello", "World"]
+// // TODO! Fix the Storage to pass the Array between windows whitout reloading it with Random Trips.
 //
-//     // (EXTRA) CLEAR LOCAL STORAGE
-//     // localStorage.removeItem("KEY");
-//     // localStorage.clear();
-// }
-
-// TODO! Fix the Storage to pass the Array between windows whitout reloading it with Random Trips.
-
-//
-// function storeArray () {
-//     // (A) VARIABLES TO PASS
-//     var first = "Foo Bar",
-//         second = ["Hello", "World"];
-//
-//     // (B) SAVE TO LOCAL STORAGE
-//     // (B1) FLAT STRING OR NUMBER
-//     // LOCALSTORAGE.SETITEM("KEY", "VALUE");
-//     localStorage.setItem("first", first);
-//
-//     // (B2) ARRAY OR OBJECT
-//     // LOCAL STORAGE CANNOT STORE ARRAY AND OBJECTS
-//     // JSON ENCODE BEFORE STORING, CONVERT TO STRING
+// //
+// // function storeArray () {
+// //     // (A) VARIABLES TO PASS
+// //     var first = "Foo Bar",
+// //         second = ["Hello", "World"];
+// //
+// //     // (B) SAVE TO LOCAL STORAGE
+// //     // (B1) FLAT STRING OR NUMBER
+// //     // LOCALSTORAGE.SETITEM("KEY", "VALUE");
+// //     localStorage.setItem("first", first);
+// //
+// //     // (B2) ARRAY OR OBJECT
+// //     // LOCAL STORAGE CANNOT STORE ARRAY AND OBJECTS
+// //     // JSON ENCODE BEFORE STORING, CONVERT T STRING
 //     localStorage.setItem("second", JSON.stringify(second));
 //
 //     // (C) REDIRECT OR OPEN NEW WINDOW IF YOU WANT
