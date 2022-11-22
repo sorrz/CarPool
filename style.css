@@ -74,6 +74,7 @@ p {
     color: black;
     height: 150px;
 
+
 }
 
 .navbar-nav li a:hover {
@@ -102,6 +103,7 @@ p {
     background-color: var(--dark-blue);
     color: var(--white);
     padding: 50px;
+    height: 100vh;    /* TEESTARRR FÖRLÅT */
 }
 
 .bg-3 {
