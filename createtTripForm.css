@@ -1,10 +1,47 @@
 *{
     box-sizing: border-box;
 }
+:root {
+    --baby-pink: #fcc9c6ff;
+    --spanish-pink: #f7b7b6ff;
+    --light-cyan: #c7e8e3ff;
+    --white: #ffffff;
+    --dark-blue: #474e5d;
+    --dark-grey: #555555;
+    --black: #000000;
+}
+
+.feed-container {
+    background-color: var(--spanish-pink);
+    color: white;
+    display: table;
+    flex-grow: 1;
+
+}
+
+.feed-data {
+    background-color: var(--dark-grey);
+    justify-content: space-evenly;
+    text-transform: capitalize;    /* Första Bokstaven i varje ord blir stort, använd? */
+
+}
+
+.feed-extended-data {
+    /*display: none;*/
+
+}
+
+.feed-item-header {
+    /*display: none;*/
+}
+
+.feed-extended-header {
+    /*display: none;*/
+}
+
 
 body{
-    display:flex;
-    justify-content: center;
+
 
 }
 
@@ -12,6 +49,8 @@ body{
     border: 1px solid black;
     width: 400px;
     max-width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .header {
@@ -25,6 +64,7 @@ body{
 
 .form{
     width: 100%;
+    padding: 20px;
 }
 
 .form-control {

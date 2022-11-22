@@ -55,7 +55,8 @@ form.addEventListener('submit', (e) => {
         console.log(trips);
 
         // Go to the feed page
-        window.open('newFeed.html')
+        // window.open('newFeed.html')
+        updateFeed();
     } else {
         // Alert the user that the validation failed
         alert("Incorrectly filled form. Please take a look at your input.");
