@@ -1,6 +1,8 @@
 const feedContainer = document.getElementById("feed-container");
 console.log(feedContainer);
 
+updateFeed();
+
 for (let i = 0; i < trips.length; i++) {
     let trip = trips[i];
 
