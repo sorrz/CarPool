@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in</title>
+    <script defer src="signup.js"></script>
+  </head>
+  <body>
+    <main id="main-holder">
+      <h1 id="signup-header">Become a member</h1>
+
+      <form
+      id="signup-form"
+    >
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name-field"
+          class="singup-form-field"
+          placeholder="name"
+        />
+        <br />
+        <label for="phone">Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone-field"
+          class="signup-form-field"
+          placeholder="phone number"
+        />
+        <br />
+        <label for="email">Mail</label>
+        <input
+          name="email"
+          id="email-field"
+          type="email"
+          required
+          placeholder="me@example.com"
+        />
+        <br />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password-field"
+          class="signup-form-field"
+          placeholder="password"
+        />
+        <br />
+        <label for="city">Home City</label>
+        <input
+          type="text"
+          name="city"
+          id="city-field"
+          class="signup-form-field"
+          placeholder="city"
+        />
+        <br />
+      <button id="signupButton">Submit</button>
+      </form>
+    </main>
+  </body>
+
+</html>
