@@ -41,8 +41,29 @@
 
 
 body{
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: var(--dark-grey);
 
+  }
+  
+  
+p{
+    font-size: 16px;
 }
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--black);
+    height: 150px;
+
+  }
 
 .createTrip {
     border: 1px solid black;
@@ -66,37 +87,37 @@ body{
     padding: 20px;
 }
 
-.form-control {
+.field-control {
     margin-bottom: 15px;
     padding-bottom: 20px;
 }
 
-.form-control label {
+.field-control label {
     display: inline-block;
 }
 
-.form-control input {
+.field-control input {
     display: block;
 }
-.form-control textarea{
+.field-control textarea{
     display: block;
     resize: none;
 }
 
-.form-control.success input {
+.field-control.success input {
     
     outline: green solid 2px;
 }
 
-.form-control.error input {
+.field-control.error input {
     outline: red solid 2px;
 }
 
-.form-control small {
+.field-control small {
     visibility: hidden;
 }
 
-.form-control.error small{
+.field-control.error small{
     visibility: visible;
     color: red;
 }

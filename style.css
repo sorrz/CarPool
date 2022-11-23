@@ -23,7 +23,6 @@
     }
      
 
-    
     .navbar {
         padding-top: 15px;
         padding-bottom: 15px;
@@ -34,6 +33,7 @@
         letter-spacing: 5px;
         color: var(--black);
         height: 150px;
+   
     
       }
     
@@ -93,3 +93,7 @@
       }
 
       .margin {margin-bottom: 45px;}
+
+      .login-form{
+        border: solid 2px black;
+      }
