@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in</title>
-    <script defer src="./js/signup.js"></script>
   </head>
   <body>
     <main id="main-holder">
       <h1 id="signup-header">Become a member</h1>
+
+      <div id="signup-error-msg-holder">
+        <p id="signup-error-msg">Must fill in</p>
+      </div>
 
       <form id="signup-form">
         <label for="name">Name</label>
@@ -35,7 +38,6 @@
           name="email"
           id="email-field"
           type="email"
-          required
           placeholder="me@example.com"
         />
         <br />
@@ -57,8 +59,15 @@
           placeholder="city"
         />
         <br />
+        <br />
         <button id="signupButton">Submit</button>
       </form>
     </main>
+    <script defer src="./js/signup.js"></script>
+    <style>
+      #signup-error-msg {
+        opacity: 0;
+      }
+    </style>
   </body>
 </html>
