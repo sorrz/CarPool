@@ -1,8 +1,7 @@
-*{
-    box-sizing: border-box;
-}
+
+/*Style-sheet for index2.html*/
+
 :root {
-    --baby-pink: #fcc9c6ff;
     --spanish-pink: #f7b7b6ff;
     --light-cyan: #c7e8e3ff;
     --white: #ffffff;
@@ -11,18 +10,45 @@
     --black: #000000;
 }
 
-.feed-container {
-    background-color: var(--spanish-pink);
-    color: white;
-    display: table;
-    flex-grow: 1;
+body{
+    font: 20px Montserrat, sans-serif;
+    color: var(--dark-grey);
+    background-color: var(--white);
 
-}
+  }
+
+  h2{
+    color: var(--dark-grey);
+  }
+
+  
+
+/*Navbar*/
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--black);
+    height: 150px;
+    background-color: var(--white);
+  }
+
+  .navbar-nav  li a:hover {
+    color: var(--spanish-pink) !important;
+  }
+
+/*Feed*/
 
 .feed-data {
     background-color: var(--dark-grey);
     justify-content: space-evenly;
-    text-transform: capitalize;    /* Första Bokstaven i varje ord blir stort, använd? */
+    text-transform: capitalize;
+        /* Första Bokstaven i varje ord blir stort, använd? */
 
 }
 
@@ -39,48 +65,35 @@
     /*display: none;*/
 }
 
-
-body{
-
+.feed-container {
+    background-color: var(--spanish-pink);
+    color: white;
+    flex-grow: 1;
 }
 
-.createTrip {
-    border: 1px solid black;
-    width: 400px;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-}
+/*Create trip*/
 
-.header {
-    background: grey;
-}
-
-.header h2{
-    margin: 0;
-    padding: 20px;
-}
-
-.form{
+#form{
     width: 100%;
     padding: 20px;
 }
 
+#startLocation, #endLocation, #dateTime, #numberOfAvailableSeats, #price, #allergiesText, #noteToPassenger{
+    border-radius: 10px;
+    opacity: 70%;
+    border: none;
+    padding: 5px
+}
+
+
+
+
 .form-control {
-    margin-bottom: 15px;
+
     padding-bottom: 20px;
-}
-
-.form-control label {
-    display: inline-block;
-}
-
-.form-control input {
+    background-color: var(--light-cyan);
+    border: none;
     display: block;
-}
-.form-control textarea{
-    display: block;
-    resize: none;
 }
 
 .form-control.success input {
@@ -100,13 +113,81 @@ body{
     visibility: visible;
     color: red;
 }
-#isAllergic{
-    outline: none;
-}
-#allergiesText {
-    visibility: hidden;
+
+  
+  label{
+    margin-top: 10px;
+    display: block;
+    color: var(--dark-grey);
+
+  }
+
+
+  button#submit{
+    margin: 15px;
+    color: var(--dark-blue);
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  button#submit:hover {
+    background-color: var(--white);
+  }
+
+  /*Feed search*/
+
+.btn-outline-success{
+    color: var(--dark-grey);
+    background-color: var(--spanish-pink);
+    border: none;
 }
 
-/* #noteToPassenger {
-    height: 50px;
-} */
+.btn-outline-success:hover{
+    background-color: var(--light-cyan);
+    color: var(--dark-grey);
+}
+
+
+.me-2{
+    background-color: var(--light-cyan);
+    opacity: 70%;
+}
+
+.me-2:hover{
+background-color: var(--spanish-pink);
+
+}
+
+/*Containers*/
+
+.bg-2 { 
+    background-color: var(--light-cyan);
+    color: var(--white);
+    padding: 50px;
+  }
+
+  .bg-3 { 
+    background-color: var(--white); 
+    color: var(--dark-grey);
+    padding: 50px;
+
+ 
+  }
+
+  .bg-4 { 
+    background-color: var(--light-cyan); 
+    color: var(--dark-grey);
+    padding: 50px;
+
+  }
+
+  .bg-5 { 
+    background-color: var(--white); 
+    color: var(--dark-grey);
+    height: auto;
+    padding: 20px;
+    font-size: 16px;
+
+  }

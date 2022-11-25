@@ -1,6 +1,7 @@
 
+  /*Style-sheet for index.html & Contact.html*/
+  
   :root{
-    --baby-pink: #fcc9c6ff;
     --spanish-pink: #f7b7b6ff;
     --light-cyan: #c7e8e3ff;
     --white: #ffffff;
@@ -34,6 +35,7 @@
         letter-spacing: 5px;
         color: var(--black);
         height: 150px;
+        background-color: var(--white);
     
       }
     
@@ -85,11 +87,5 @@
       }
 
 
-      .bg-5 { 
-        background-color: var(--white); 
-        color: var(--dark-grey);
-        height: auto;
-        padding: 20px;
-      }
 
       .margin {margin-bottom: 45px;}
