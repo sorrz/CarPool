@@ -1,6 +1,4 @@
 const feedContainer = document.getElementById("feed-container");
-console.log(feedContainer);
-
 updateFeed();
 
 // Setup a Sorting Function to handle the calls from SearchButton Queries
@@ -58,7 +56,7 @@ function updateFeed(from = null, to = null) {
         createElement("div", "feed-extended-header-data", trip.numberOfAvailableSeats, extendedContainer);
 
         createElement("div", "feed-extended-header", "Allergies:", extendedContainer);
-        createElement("div", "feed-header", (trip.allergies !== "" ? trip.allergies : "No Allergies"), extendedContainer);
+        createElement("div", "feed-extended-header-data", (trip.allergies !== "" ? trip.allergies : "No Allergies"), extendedContainer);
 
         createElement("div", "feed-extended-header", "Message:", extendedContainer);
         createElement("div", "feed-header", (trip.message !== "" ? trip.message : "No Message"), extendedContainer);
@@ -90,4 +88,22 @@ function createElement(tag, className, text, parent) {
     if (text != null) element.innerText = text;
     if (parent != null) parent.appendChild(element);
     return element;
+}
+
+// Support function for toggling the card expansion
+function toggleCardExpansion(card, button) {
+    if (!card.classList.contains("feed-extended-data-expanded")) {
+        card.classList.add("feed-extended-data-expanded");
+        button.innerText = "-";
+    } else {
+        card.classList.remove("feed-extended-data-expanded");
+        button.innerText = "+";
+    }
+}
+
+function bookSeat(parent, button, trip) {
+    let passenger = localStorage.getItem("Username");
+    trip.bookSeat(passenger);
+    updateFeed(document.getElementById('fromField').value,
+        document.getElementById('toField').value);
 }

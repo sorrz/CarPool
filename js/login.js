@@ -11,24 +11,13 @@ loginButton.addEventListener("click", (e) => {
 
     let result = ""
 
-    if (newName !== "") {
-       alert ("Welcome " + newName + " !") ;
-    }
-
-    else {
-        result +="Error - username cannot be empty";
-    }
-
     if (newName == "") {
         result += "Error - username cannot be empty";
     }
     if (newPassword == "") {
-       
         result += (result !== "" ? "\n" : "") + "Error - password cannot be empty";
     }
-
-    if (result !== "")
-    {
+    if (result !== "") {
         alert(result);
     }
     else {

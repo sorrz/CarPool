@@ -543,15 +543,17 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
         }
         if (timeTo !== null) {
             // Exclude trips that starts after this time
-            // if (debugMainJS) {
-            //     let string = trip.dateTime.getHours() + " > " + timeTo.getHours();
-            //     if (trip.dateTime.getHours() > timeTo.getHours()) string += ": FAIL";
-            //     else if (trip.dateTime.getHours() === timeTo.getHours()){
-            //         string = trip.dateTime.getHours() + " = " + timeTo.getHours() + " | " + trip.dateTime.getMinutes() + " > " + timeTo.getMinutes();
-            //         if (trip.dateTime.getMinutes() > timeTo.getMinutes()) string += ": FAIL";
-            //     }
-            //     console.log(string);
-            // }
+
+            // For debugging
+            if (debugMainJS) {
+                let string = trip.dateTime.getHours() + " > " + timeTo.getHours();
+                if (trip.dateTime.getHours() > timeTo.getHours()) string += ": FAIL";
+                else if (trip.dateTime.getHours() === timeTo.getHours()){
+                    string = trip.dateTime.getHours() + " = " + timeTo.getHours() + " | " + trip.dateTime.getMinutes() + " > " + timeTo.getMinutes();
+                    if (trip.dateTime.getMinutes() > timeTo.getMinutes()) string += ": FAIL";
+                }
+                console.log(string);
+            }
             if (trip.dateTime.getHours() > timeTo.getHours()) return;
             else if (trip.dateTime.getHours() === timeTo.getHours() && trip.dateTime.getMinutes() > timeTo.getMinutes()) return;
         }
@@ -662,22 +664,19 @@ function compareAvailableSeats(a, b, ascending = true) {
     return a.numberOfAvailableSeats < b.numberOfAvailableSeats ? (ascending ? 1 : -1) : (ascending ? -1 : 1);
 }
 
+// ###############
+// ## Main code ##
+// ###############
 
-//function generateInitialValues() {
-  //  addRandomTrips(10);
-    //console.log(trips);
-//}
-
-if (trips.length === 0) {
-    console.log("Generating trips");
-    addRandomTrips(10);
-    console.log(trips);
+// Debug
+if (debugMainJS) {
+    console.log(`Username; ${localStorage.getItem("Username")}`)
+    console.log("Generating Trips:")
 }
 
-// Try it out:
-// addRandomTrips(5000);
-// console.log(sortTrips(trips, true, comparePrice, compareDriverName));
+addRandomTrips(150);
 
+// TESTCASES
 // Use this way:
 // A) let trip = new Trip("dennis", 3, "Norrköping", "Linköping", "allmän info", false, 200);
 // A) let driver = trip.driverName;

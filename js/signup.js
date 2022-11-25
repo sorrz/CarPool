@@ -22,7 +22,9 @@ loginButton.addEventListener("click", (e) => {
    if (newName !== "" && newPhone !== "" && newMail !== "" && newPsw !== "" && newCity !=="") {
     signupErrorMsg.style.opacity = "0";
     alert("Welcome " + newName + " !");
-       
+       localStorage.setItem("Username", newName);
+       console.log(localStorage.getItem("Username"))
+       window.location.href="./index2.html";
     }
    
      else {

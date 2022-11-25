@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="login-style.css">
-  <script src="js/main.js"></script>
+
 </head>
 <body>
 
@@ -46,7 +46,7 @@
       </div>
 
       <form id="login-form">
-        <label for="name">Name</label>
+        <label>Name</label>
         <input
           type="text"
           name="name"
@@ -55,16 +55,17 @@
           placeholder="name"
         />
         <br />
-        <label for="phone">Phone</label>
+        <label>Phone</label>
         <input
           type="tel"
           name="phone"
           id="phone-field"
           class="signup-form-field"
-          placeholder="phone number"
+          placeholder="011-134565"
+          pattern="[0-9]{5-15}"
         />
         <br />
-        <label for="email">Mail</label>
+        <label>Mail</label>
         <input
           name="email"
           id="email-field"
@@ -72,7 +73,7 @@
           placeholder="me@example.com"
         />
         <br />
-        <label for="password">Password</label>
+        <label>Password</label>
         <input
           type="password"
           name="password"
@@ -81,7 +82,7 @@
           placeholder="password"
         />
         <br />
-        <label for="city">Home City</label>
+        <label>Home City</label>
         <input
           type="text"
           name="city"

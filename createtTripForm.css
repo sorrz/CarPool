@@ -43,13 +43,16 @@ body{
   }
 
 /*Feed*/
+#createTripMain {
+    display: none;
+}
 
-.feed-data {
-    background-color: var(--dark-grey);
-    justify-content: space-evenly;
-    text-transform: capitalize;
-        /* Första Bokstaven i varje ord blir stort, använd? */
+.btn {
+    background-color: var(--white);
+}
 
+.btn:hover {
+    background-color: var(--spanish-pink);
 }
 
 .feed-extended-data {
@@ -77,7 +80,7 @@ body{
 }
 
 .feed-extended-header {
-    /*display: none;*/
+    display: none;
 }
 
 .feed-container {
@@ -100,8 +103,9 @@ body{
     padding: 5px
 }
 
-
-
+#noteToPassenger {
+    resize: none;
+}
 
 .form-control {
 
@@ -206,3 +210,49 @@ background-color: var(--spanish-pink);
     font-size: 16px;
 
   }
+
+.userBar {
+      background-color: var(--spanish-pink);
+      border-radius: 5px;
+      padding: 15px 5px 0px 12px;
+
+  }
+.userBar:hover {
+    background-color: var(--light-cyan);
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.feed-data {
+    background-color: var(--spanish-pink);
+    color: var(--dark-grey);
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    text-transform: capitalize;
+
+}
+
+.feed-header {
+    flex-grow: 5;
+    text-align: left;
+    max-width: 22%;
+}
+
+.feed-item-header {
+    display: none;
+}
+
+.feed-extended-data {
+
+}
+
+#listExpand {
+    background-color: var(--light-cyan);
+    color: white;
+
+}
+#listExpand:hover {
+    background-color: var(--light-cyan);
+    transition: all 300ms ease-in-out;
+}

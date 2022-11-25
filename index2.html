@@ -12,7 +12,24 @@
     <link rel="stylesheet" href="createtTripForm.css"/>
 </head>
 
+
+
+
 <body>
+
+<!--<script>-->
+<!--    localStorage.removeItem("Username");-->
+<!--    function checkLoggedin() {-->
+<!--        if (localStorage.getItem("Username") == "") {-->
+
+<!--            window.location.href="./index.html";-->
+<!--            console.log("redirecting")-->
+<!--        }-->
+
+<!--    }-->
+
+<!--    checkLoggedin();-->
+<!--</script>-->
 
     <!-- Navbar -->
     <div class="sticky-top">
@@ -25,25 +42,35 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#form">CREATE A TRIP</a>
+            <a class="nav-link" href="javascript:displaySection('#createTripMain')" id="createTripButton">CREATE A TRIP</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feed">SEARCH TRIP</a>
+            <a class="nav-link" href="javascript:displaySection('#feedMain')" id="feedMainButton">SEARCH TRIP</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">CONTACT</a>
+            <a class="nav-link" href="javascript:displaySection('#contactMain')" id="contactMainButton">CONTACT</a>
           </li>
         
         </ul>
        
       </div>
+
+        <div class="userBar" id="userBar" onclick="javascript: logout()">
+            <p id="user" ></p>
+            <script>
+                const user = document.getElementById("user");
+                user.innerText = `Log out (${localStorage.getItem("Username")})`;
+            </script>
+
+        </div>
     </div>
   </nav>
+
 </div>
   
 
 <!-- <div class="createTrip"> -->
-    <div class="container-fluid bg-2 text-center">
+    <div class="container-fluid bg-2 text-center main-section" id="createTripMain">
         <div class="createTrip">
 
 
@@ -73,18 +100,17 @@
                 </div>
                 <div class="form-control">
                     <label>Seats available</label>
-                    <input type="number" id="numberOfAvailableSeats" min="1" max="50"/><br/>
+                    <input type="number" id="numberOfAvailableSeats" min="1" max="50" value="1"/><br/>
                     <small> </small>
                 </div>
                 <div class="form-control">
-                    <label>Price</label>
-                    <input type="number" id="price" min="1"/><br/>
+                    <label>Price (in SEK)</label>
+                    <input type="number" id="price" min="1" placeholder="1"/><br/>
                     <small> </small>
                 </div>
                 <div class="form-control">
-                    <label>Allergic</label>
-                    <input type="checkbox" id="isAllergic" onclick="toggleAllergies()"/>
-                    <input type="Insert allergies here" id="allergiesText"/><br/>
+                    <label>Allergies (optional)</label>
+                    <input type="Insert allergies here" id="allergiesText" placeholder="Nuts, Fur, Perfume"/><br/>
                     <small></small>
                 </div>
                 <div class="form-control">
@@ -96,30 +122,30 @@
                     ></textarea>
                 </div>
         
-                <button id="submit">Submit</button>
+                <button id="submit">Create Trip</button>
             </form>
         </div>
 
 </div>
 
 <!-- </div> -->
-<div class="container-fluid bg-3 text-center">
+<div class="container-fluid bg-3 text-center main-section" id="feedMain">
 
     <div class="header">
         <h2>Search Trip</h2>
     </div>
     <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Take me from.." aria-label="Search">
-        <input class="form-control me-2" type="search" placeholder="To" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Take me from.." aria-label="Search" id="fromField">
+        <input class="form-control me-2" type="search" placeholder="To" aria-label="Search" id="toField">
+        <button class="btn btn-outline-success" type="submit" id="searchButton">Search</button>
       </form>
    
 <br><br><br>
-<div id="feed" class="bottom-feeder">
+<!--<div id="feed" class="bottom-feeder">-->
     <div class="feed-container" id="feed-container">
         <!-- JS Data output here! -->
     </div>
-</div>
+<!--</div>-->
 
 
 </div>
@@ -132,7 +158,7 @@
         <p>We are here to answer any questions you might have about us and/or our services.<br><br>
             Send us an email or give us a call and we'll have a chat!
         </p><br>
-        <p><b>Sayhi@carpoolkaraoke.com</b></p>
+        <p><b><a class="btn" href="mailto:sayhi@carpool-karaoke.com">SEND AN EMAIL</a></b></p>
         <p><b>010-111000222</b></p>
     
     
@@ -142,7 +168,7 @@
 </div>
 <div class="sticky-bottom">
 
-<footer class="container-fluid bg-5 text-center">
+<footer class="container-fluid bg-5 text-center" id="contactMain">
     <p>Design E.Baker</p> 
   </footer>
 <script src="js/createTripForm.js"></script>

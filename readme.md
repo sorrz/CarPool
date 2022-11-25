@@ -25,3 +25,16 @@ copyright protected.
 If you want to use it, build on it, you are welcome to fork it, have fun.
 
 
+#### TODO / BUGFIXES
+
+[x] - Loginform, welcome without password.
+[x] - Store the Username
+[x] - Bounce function to index2, from login and register.
+[x] - Allergy Checkbox, inverted.
+[x] - +-for trips to show expanded
+[x] - Function for Searching
+[x] - Function for sorting
+[x] - Hide Feed
+[x] - Styling of Feed // Fix it!
+[x] - Log-out and reload index.html
+[x] - Contact link

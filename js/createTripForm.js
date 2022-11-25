@@ -4,7 +4,7 @@ const startLocation = document.getElementById('startLocation');
 const endLocation = document.getElementById('endLocation');
 const dateTime = document.getElementById('dateTime');
 const numberOfAvailableSeats = document.getElementById('numberOfAvailableSeats');
-const isAllergic = document.getElementById('isAllergic');
+// const isAllergic = document.getElementById('isAllergic');
 const allergiesText = document.getElementById('allergiesText');
 const noteToPassenger = document.getElementById('noteToPassenger');
 const price = document.getElementById('price');
@@ -27,16 +27,17 @@ min.setMinutes(min.getMinutes() - min.getTimezoneOffset());
 dateTime.min = min.toISOString().slice(0, 16);
 
 //Displays the textbox below the allergic checkbox when checked.
-function toggleAllergies() {
-    const checkBox = isAllergic;
-
-    if (checkBox.checked == true) {
-        allergiesText.style.visibility = "visible";
-    } else {
-        allergiesText.style.visibility = "hidden";
-    }
-
-}
+// This is not Used, deprecated function.
+// function toggleAllergies() {
+//     const checkBox = isAllergic;
+//
+//     if (checkBox.checked == true) {
+//         allergiesText.style.visibility = "visible";
+//     } else {
+//         allergiesText.style.visibility = "hidden";
+//     }
+//
+// }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -79,12 +80,12 @@ function clearForm() {
 }
 
 function createTripObject() {
-    //TODO: [ ] The login form is not integrated, so we do not have the name of the drive:
+    //TODO: [x] The login form is not integrated, so we do not have the name of the drive:
     //          A dummy name is used in its place.
     //TODO: [X] Price field is not integrated, so we do not have a price:
     //          A dummy price is used in its place.
 
-    let driverName = "<Robot>"; // !!! To be replaced with the name from the logged in user
+    let driverName = localStorage.getItem("Username"); // !!! To be replaced with the name from the logged in user
     //let price = 49; //             !!! To be replaced with the price that the user has set. REPLACED BY OSCAR 21/11
 
     // Creates and returns a new Trip object that is populated with the values of the form
@@ -95,7 +96,7 @@ function validate() {
     const startLocationValue = startLocation.value.toLowerCase().trim();
     const endLocationValue = endLocation.value.toLowerCase().trim();
     const numberOfAvailableSeatsValue = numberOfAvailableSeats.value;
-    const allergiesTextValue = allergiesText.value;
+    // const allergiesTextValue = allergiesText.value;
     const priceValue = price.value;
 
     let error = false; // set this flag to true if any validation error occured
@@ -143,16 +144,17 @@ function validate() {
     }
 
     //Check allergies
-    if (isAllergic.checked) {
-        if (allergiesTextValue == '') {
-            setToInvalid(isAllergic, 'Enter your allergies.');
-            error = true;
-        } else {
-            setToValid(allergiesText);
-        }
-    } else {
-        setToValid(allergiesText);
-    }
+    // Function Depricated, code not in use.
+    // if (isAllergic.checked) {
+    //     if (allergiesTextValue == '') {
+    //         setToInvalid(isAllergic, 'Enter your allergies.');
+    //         error = true;
+    //     } else {
+    //         setToValid(allergiesText);
+    //     }
+    // } else {
+    //     setToValid(allergiesText);
+    // }
 
     //Check note to driver
     // Not implemented
@@ -174,3 +176,10 @@ function setToValid(input) {
     const target = input.parentElement;
     target.className = 'form-control success';
 };
+
+// Called from the Logout button, to clear the variable Username from Localstorage
+// and bounce the user back to index.html
+function logout() {
+    localStorage.removeItem("Username");
+    window.location.href="./index.html";
+}
