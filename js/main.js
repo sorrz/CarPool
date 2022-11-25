@@ -1,8 +1,7 @@
 // Holds all of the registered trips
 // Call addTrip(Trip); to add another Trip to this array
 // or   addRandomTrips(5000);
-var trips;
-if (trips === undefined) trips = new Array();
+const trips = new Array();
 // Set to true if you want to log debug-related things to the console
 const debugMainJS = true;
 
@@ -238,6 +237,7 @@ function getRandomFirstName() {
 }
 
 function getRandomLastName() {
+    // Could replace with an array
     switch (getRandomInt(51)) {
         case 0:
             return "Adolfsson";
@@ -348,16 +348,16 @@ function getRandomSeats() {
     let r = Math.random();
 
     if (r <= 0.5) {
-        // 50% chanse of 3 seats available
+        // 50% chance of 3 seats available
         return 3;
     } else if (r <= 0.8) {
-        // 30% chanse of 2 seats available
+        // 30% chance of 2 seats available
         return 2;
     } else if (r <= 0.95) {
-        // 15% chanse of 1 seats available
+        // 15% chance of 1 seats available
         return 1;
     } else {
-        // 5% chanse of 4-8 seats available
+        // 5% chance of 4-8 seats available
         return getRandomInt(5) + 4;
     }
 }
@@ -416,7 +416,7 @@ function getRandomAllergies() {
         // 8% chanse of 3 allergies
         numberOfAllergies = 3;
     } else {
-        // 5% chanse of 4 allergies
+        // 5%  of 4 allergies
         numberOfAllergies = 4;
     }
 
@@ -432,7 +432,7 @@ function getRandomAllergies() {
         allergies.push(allergy);
     }
 
-    // Append all of the allergies into a string
+    // Append all the allergies into a string
     let result = "";
 
     for (let i = 0; i < allergies.length; i++) {
@@ -468,7 +468,7 @@ function getRandomPrice(max = 10) {
 
 function createTime(hour, minute, fromDate = null) {
     // This function creates a new date object that is set to
-    // todays date (or fromDate if specified), and the specified hour and minute
+    // today's date (or fromDate if specified), and the specified hour and minute
     // Usage: When comparing dates and not want the time to affect it
 
     let date = null;
@@ -500,35 +500,44 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
             // Exclude trips that is before this date
             let tripDate = createTime(0, 0, trip.dateTime.toLocaleDateString());
             let date = createTime(0, 0, dateFrom);
-            // if (debugMainJS) {
-            //     let string = tripDate.toLocaleString() + " < " + date.toLocaleString();
-            //     if (tripDate < date) string += ": FAIL";
-            //     console.log(string);
-            // }
+
+            // For debugging
+            if (debugMainJS) {
+                let string = tripDate.toLocaleString() + " < " + date.toLocaleString();
+                if (tripDate < date) string += ": FAIL";
+                console.log(string);
+            }
+
             if (tripDate < date) return;
         }
         if (dateTo !== null) {
             // Exclude trips that is after this date
             let tripDate = createTime(0, 0, trip.dateTime.toLocaleDateString());
             let date = createTime(0, 0, dateTo);
-            // if (debugMainJS) {
-            //     let string = tripDate.toLocaleString() + " > " + date.toLocaleString();
-            //     if (tripDate > date) string += ": FAIL";
-            //     console.log(string);
-            // }
+
+            // For debugging
+            if (debugMainJS) {
+                let string = tripDate.toLocaleString() + " > " + date.toLocaleString();
+                if (tripDate > date) string += ": FAIL";
+                console.log(string);
+            }
+
             if (tripDate > date) return;
         }
         if (timeFrom !== null) {
             // Exclude trips that starts before this time
-            // if (debugMainJS) {
-            //     let string = trip.dateTime.getHours() + " < " + timeFrom.getHours();
-            //     if (trip.dateTime.getHours() < timeFrom.getHours()) string += ": FAIL";
-            //     else if (trip.dateTime.getHours() === timeFrom.getHours()){
-            //         string = trip.dateTime.getHours() + " = " + timeFrom.getHours() + " | " + trip.dateTime.getMinutes() + " < " + timeFrom.getMinutes();
-            //         if (trip.dateTime.getMinutes() < timeFrom.getMinutes()) string += ": FAIL";
-            //     }
-            //     console.log(string);
-            // }
+
+            // For debugging
+            if (debugMainJS) {
+                let string = trip.dateTime.getHours() + " < " + timeFrom.getHours();
+                if (trip.dateTime.getHours() < timeFrom.getHours()) string += ": FAIL";
+                else if (trip.dateTime.getHours() === timeFrom.getHours()){
+                    string = trip.dateTime.getHours() + " = " + timeFrom.getHours() + " | " + trip.dateTime.getMinutes() + " < " + timeFrom.getMinutes();
+                    if (trip.dateTime.getMinutes() < timeFrom.getMinutes()) string += ": FAIL";
+                }
+                console.log(string);
+            }
+
             if (trip.dateTime.getHours() < timeFrom.getHours()) return;
             else if (trip.dateTime.getHours() === timeFrom.getHours() && trip.dateTime.getMinutes() < timeFrom.getMinutes()) return;
         }
@@ -558,7 +567,7 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
             // Separate all specified allergies into an array of allergies
             let allergyArray = allergies.split(", ");
 
-            // Loop through each of the allergies and see if they excists in the trip
+            // Loop through each of the allergies and see if they exist in the trip
             let fail = false;
             allergyArray.forEach(allergy => {
                 // Check if the current allergy is included in the trip's listed allergies
@@ -572,7 +581,7 @@ function filterTrips(dateFrom = null, dateTo = null, timeFrom = null, timeTo = n
             if (fail) return;
         }
 
-        // If the excecution reaches here, add the trip to the result
+        // If the execution reaches here, add the trip to the result
         result.push(trip);
     });
 
@@ -624,13 +633,13 @@ function sortTrips(tripArray, ascending, fieldA, fieldB = null, fieldC = null, f
 }
 
 function compareStartingLocation(a, b, ascending = true) {
-    if (a.startLocation === b.startLocation) return 0;
-    return a.startLocation < b.startLocation ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+    if (a.startLocation.toLowerCase() === b.startLocation.toLowerCase()) return 0;
+    return a.startLocation.toLowerCase() < b.startLocation.toLowerCase() ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
 }
 
 function compareDestination(a, b, ascending = true) {
-    if (a.endLocation === b.endLocation) return 0;
-    return a.endLocation < b.endLocation ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
+    if (a.endLocation.toLowerCase() === b.endLocation.toLowerCase()) return 0;
+    return a.endLocation.toLowerCase() < b.endLocation.toLowerCase() ? (ascending ? -1 : 1) : (ascending ? 1 : -1);
 }
 
 function compareDateTime(a, b, ascending = true) {

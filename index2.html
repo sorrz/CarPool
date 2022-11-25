@@ -149,6 +149,26 @@
 <script src="js/main.js"></script>
 <script src="js/feed.js"></script>
 </div>
+
+<script type="text/javascript">
+
+    function displaySection(section) {
+        // Hide all main sections
+        let sections = document.getElementsByClassName("main-section");
+        console.log(sections);   // Log the output to check
+        for (let i = 0; i < sections.length; i++) {
+            sections[i].style.display = "none";
+        }
+
+        // Display the section
+        document.querySelector(section).style.display = "block";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+
+</script>
+
 </body>
 </html>
 

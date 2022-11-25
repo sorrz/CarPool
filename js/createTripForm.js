@@ -53,15 +53,30 @@ form.addEventListener('submit', (e) => {
         // Alert the user of the success
         alert(`Thanks! Your trip has been registered.\n\n${trip.toMessage()}`);
         console.log(trips);
-
-        // Go to the feed page
-        // window.open('newFeed.html')
+        // UpdateFeed to include the trips
         updateFeed();
+        // Clear the Form of input
+        clearForm();
+        // Reload the page to the Feed
+        displaySection("#feedMain");
     } else {
         // Alert the user that the validation failed
         alert("Incorrectly filled form. Please take a look at your input.");
     }
 });
+
+function clearForm() {
+    let controls = document.getElementsByTagName("input");
+
+    for (let i = 0; i < controls.length; i++) {
+        let control = controls[i];
+        if (control.type === "text") control.value = "";
+        if (control.type === "datetime-local") control.value = new Date().toLocaleString().slice(0, 16);
+        if (control.type === "number") control.value = "1";
+    }
+
+
+}
 
 function createTripObject() {
     //TODO: [ ] The login form is not integrated, so we do not have the name of the drive:

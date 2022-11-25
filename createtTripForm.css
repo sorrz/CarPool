@@ -53,8 +53,23 @@ body{
 }
 
 .feed-extended-data {
-    /*display: none;*/
+    display: none;
+}
 
+.feed-extended-data-expanded {
+    background-color: var(--light-cyan);
+    color: var(--dark-grey);
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    text-transform: capitalize;
+
+}
+
+.feed-extended-header-data {
+    flex-grow: 4;
+    text-align: left;
+    max-width: 18%;
 }
 
 .feed-item-header {
