@@ -31,7 +31,7 @@
         border: 0;
         border-radius: 0;
         margin-bottom: 0;
-        font-size: 12px;
+        font-size: 15px;
         letter-spacing: 5px;
         color: var(--black);
         height: 150px;
@@ -54,7 +54,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 25px;
+        font-size: 30px;
+          filter: drop-shadow(-4px 3px 4px #000000);
       }
       
       .bg-1 { 

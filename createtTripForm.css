@@ -31,7 +31,7 @@ body{
     border: 0;
     border-radius: 0;
     margin-bottom: 0;
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: 5px;
     color: var(--black);
     height: 150px;
@@ -202,14 +202,16 @@ background-color: var(--spanish-pink);
 
   }
 
-  .bg-5 { 
-    background-color: var(--white); 
+  .bg-5 {
+    background-color: var(--white);
     color: var(--dark-grey);
     height: auto;
     padding: 20px;
     font-size: 16px;
 
   }
+
+
 
 .userBar {
       background-color: var(--spanish-pink);
@@ -247,12 +249,86 @@ background-color: var(--spanish-pink);
 
 }
 
-#listExpand {
+.listExpand {
     background-color: var(--light-cyan);
-    color: white;
+    color: var(--dark-grey);
+    outline: none;
+    border: none;
+    border-radius: 5px;
 
 }
-#listExpand:hover {
-    background-color: var(--light-cyan);
+.listExpand:hover {
+    background-color: var(--spanish-pink);
+    color: var(--white);
     transition: all 300ms ease-in-out;
+
+}
+
+.bookSeat {
+    background-color: var(--light-cyan);
+    color: var(--dark-grey);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+
+}
+.bookSeat:hover {
+    background-color: var(--spanish-pink);
+    color: var(--white);
+    transition: all 300ms ease-in-out;
+
+}
+
+/* MEDIA PROPERTIES FOR HANDLING OF MOBILE DEVICES! */
+
+@media only screen and (max-width: 840px)   {
+    .feed-data {
+        background-color: var(--spanish-pink);
+        color: var(--dark-grey);
+        display: inline-block;
+        border-radius: 5px;
+        /*justify-content: space-evenly;*/
+        text-transform: capitalize;
+        width: 100%;
+        padding-left: 20px;
+        padding-top: 10px;
+        border-bottom: solid 1px var(--dark-grey);
+
+    }
+
+    .feed-header {
+        flex-grow: 1;
+        text-align: center;
+        /*max-width: 22%;*/
+    }
+
+    .feed-extended-data-expanded {
+        background-color: var(--light-cyan);
+        color: var(--dark-grey);
+        display: inline-block;
+        border-radius: 5px;
+        /*justify-content: space-evenly;*/
+        text-transform: capitalize;
+        width: 100%;
+        padding-left: 20px;
+        padding-top: 10px;
+        border-bottom: solid 1px var(--dark-grey);
+
+    }
+
+    .feed-extended-header-data {
+        flex-grow: 1;
+        text-align: center;
+        max-width: 18%;
+    }
+    .bookSeat {
+        background-color: var(--spanish-pink);
+        color: var(--dark-grey);
+        outline: none;
+        border: none;
+        border-radius: 5px;
+
+    }
+
+
 }
