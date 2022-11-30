@@ -84,7 +84,7 @@ body{
 }
 
 .feed-container {
-    background-color: var(--spanish-pink);
+    background-color: var(--white);
     color: white;
     flex-grow: 1;
 }
@@ -226,13 +226,18 @@ background-color: var(--spanish-pink);
 }
 
 .feed-data {
-    background-color: var(--spanish-pink);
+    background-color: var(--white);
     color: var(--dark-grey);
     display: flex;
     border-radius: 5px;
     justify-content: space-evenly;
     text-transform: capitalize;
 
+}
+
+.feed-data:hover {
+    background-color: var(--spanish-pink);
+    transition: all 300ms ease-in-out;
 }
 
 .feed-header {
@@ -250,7 +255,7 @@ background-color: var(--spanish-pink);
 }
 
 .listExpand {
-    background-color: var(--light-cyan);
+    background-color: var(--white);
     color: var(--dark-grey);
     outline: none;
     border: none;

@@ -26,8 +26,9 @@ function updateFeed(from = null, to = null) {
     // Filter -> Sort the trips
     let tripsToShow = sortTrips(filterTrips(null, null, null, null, from, to), true, compareDateTime, compareStartingLocation);
 
+
     // Create cards for all filtered trips
-    for (let i = 0; i < trips.length; i++) {
+    for (let i = 0; i < tripsToShow.length; i++) {
         let trip = tripsToShow[i];
 
         // Add top-level containers
@@ -63,11 +64,15 @@ function updateFeed(from = null, to = null) {
 
         // Add an expansion button
         let bookButton = createElement("button", "bookSeat", "Book Seat", extendedContainer);
-        bookButton.addEventListener('click', (e) => { bookSeat(extendedContainer, bookButton, trip); });
+        bookButton.addEventListener('click', (e) => {
+            bookSeat(extendedContainer, bookButton, trip);
+        });
 
         // Add an expansion button
         let expandButton = createElement("button", "listExpand", "+", data);
-        expandButton.addEventListener('click', (e) => { toggleCardExpansion(extendedContainer, expandButton); });
+        expandButton.addEventListener('click', (e) => {
+            toggleCardExpansion(extendedContainer, expandButton);
+        });
 
         // expandButton.addEventListener("click", toggleCardExpansion(expandButton));
 
